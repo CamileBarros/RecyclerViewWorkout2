@@ -43,23 +43,16 @@ class SevenWondersAdapter(private val onItemClicked : (SevenWonders) -> Unit) : 
     }
 
     class SevenWondersViewHolder constructor(
-        itemView : View
-
+        itemView: View
     ): RecyclerView.ViewHolder(itemView){
+
         private val wonderName = itemView.name
         private val wonderLocal = itemView.local
         private val wonderPhoto = itemView.photo
-        private val wonderDescription = itemView.description_details
 
         fun bind(sevenWonders: SevenWonders, onItemClicked: (SevenWonders) -> Unit) {
             wonderName.text = sevenWonders.name
             wonderLocal.text = sevenWonders.local
-            wonderDescription.text = sevenWonders.description
-
-
-            itemView.setOnClickListener{
-                onItemClicked(sevenWonders)
-
 
             val requestOptions = RequestOptions()
                 .placeholder(R.drawable.ic_baseline_refresh_24)
@@ -69,6 +62,9 @@ class SevenWondersAdapter(private val onItemClicked : (SevenWonders) -> Unit) : 
                 .applyDefaultRequestOptions(requestOptions)
                 .load(sevenWonders.photo)
                 .into(wonderPhoto)
+
+            itemView.setOnClickListener{
+                onItemClicked(sevenWonders)
 
                 }
         }
